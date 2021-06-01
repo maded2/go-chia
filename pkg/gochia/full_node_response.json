@@ -1,0 +1,47 @@
+{
+  "blockchain_state": {
+    "difficulty": 1032,
+    "genesis_challenge_initialized": true,
+    "mempool_size": 6,
+    "peak": {
+      "challenge_block_info_hash": "0xba91041ebd4d0636cb5680affad082d3203f09f519ca4880533f6e3c6fa025f1",
+      "challenge_vdf_output": {
+        "data": "0x0300437e6377e1b340ffca74985833399bead399217fa8415c07c1abd695c3eda8748249f31337cd98161eee6fd59700955935ab3f86583eb2ebf564f7765311b6262a432b1ad8d512e3c0500f3b4da21309eb93f5e03bfbe41acfe012aeb64281100100"
+      },
+      "deficit": 2,
+      "farmer_puzzle_hash": "0xf63072c197f7d271ad2900fd19be9ad1dd25c1d568fb28d28e75ae1dde6ebb44",
+      "fees": null,
+      "finished_challenge_slot_hashes": null,
+      "finished_infused_challenge_slot_hashes": null,
+      "finished_reward_slot_hashes": null,
+      "header_hash": "0xa8241c3d7b175c12c77a60447c0d47c48010c6c020a6f6ee4df7bf18162d8507",
+      "height": 367143,
+      "infused_challenge_vdf_output": {
+        "data": "0x03000c4c72ba5fba7f3a23c1b1624bfe6bfcaff40d2067bead15c53d846523ef076589c62082c7a5488ce6e4d3b9896f32afbea225603deb2b7416839adc256c0a1229bd75d99cb8cf72222cd144b4bdb163cf68a9070dcf71c0728a175e804a66220100"
+      },
+      "overflow": false,
+      "pool_puzzle_hash": "0xf63072c197f7d271ad2900fd19be9ad1dd25c1d568fb28d28e75ae1dde6ebb44",
+      "prev_hash": "0x4d4dbaa6ebc639ff551b541d4f471c723389459f52b1e1064777d1e0d0fede73",
+      "prev_transaction_block_hash": null,
+      "prev_transaction_block_height": 367141,
+      "required_iters": 850350,
+      "reward_claims_incorporated": null,
+      "reward_infusion_new_challenge": "0x8bd8da4c894927211335b2ae4dc214ae95ea8663464b5ac4536e7fd4ff34fd8d",
+      "signage_point_index": 23,
+      "sub_epoch_summary_included": null,
+      "sub_slot_iters": 111149056,
+      "timestamp": null,
+      "total_iters": 1193959356846,
+      "weight": 73001224
+    },
+    "space": 17627891464166877184,
+    "sub_slot_iters": 111149056,
+    "sync": {
+      "sync_mode": false,
+      "sync_progress_height": 0,
+      "sync_tip_height": 0,
+      "synced": true
+    }
+  },
+  "success": true
+}
