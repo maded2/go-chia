@@ -1,2 +1,2 @@
 # go-chia
-Golang binding to the Chia Network
+Golang binding to the Chia Node
