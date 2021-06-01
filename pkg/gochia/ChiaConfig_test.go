@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"testing"
 )
 
@@ -21,11 +20,10 @@ func TestCreateClient(t *testing.T) {
 		t.Fatal(err)
 	}
 	postBody, _ := json.Marshal(map[string]string{})
-
 	responseBody := bytes.NewBuffer(postBody)
 	resp, err := client.Post("https://localhost:8555/get_blockchain_state", "application/json", responseBody)
 	if err != nil {
-		log.Fatalf("An Error Occured %v", err)
+		t.Fatalf("An Error Occured %v", err)
 	}
 	defer resp.Body.Close()
 	//Read the response body
