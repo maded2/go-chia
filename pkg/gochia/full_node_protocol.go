@@ -1,7 +1,5 @@
 package gochia
 
-import "lukechampine.com/uint128"
-
 /*
 @dataclass(frozen=True)
 @streamable
