@@ -13,5 +13,6 @@ type WalletBalance struct {
 
 type ChiaWalletResponse struct {
 	Balance WalletBalance `json:"wallet_balance"`
+	Error   string        `json:"error"`
 	Success bool          `json:"success"`
 }

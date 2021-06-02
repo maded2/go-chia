@@ -16,3 +16,16 @@ func TestWalletClient_GetWalletBalance(t *testing.T) {
 	}
 	t.Logf("%+v", balance)
 }
+
+func TestWalletClient_LogIn(t *testing.T) {
+	config := &ChiaConfig{
+		ChiaCertFile: "/home/eddie/.chia/mainnet/config/ssl/full_node/private_full_node.crt",
+		ChiaKeyFile:  "/home/eddie/.chia/mainnet/config/ssl/full_node/private_full_node.key",
+	}
+	fullNodeClient := NewWalletClient(config)
+	success, err := fullNodeClient.LogIn(123)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(success)
+}

@@ -45,3 +45,31 @@ func (client *WalletClient) GetWalletBalance(walletId int) (*WalletBalance, erro
 	}
 	return &state.Balance, nil
 }
+
+func (client *WalletClient) LogIn(fingerprint int) (bool, error) {
+	c, err := client.config.CreateClient()
+	if err != nil {
+		return false, err
+	}
+	postBody, _ := json.Marshal(map[string]interface{}{
+		"fingerprint": fingerprint,
+		"type":        "start",
+		"host":        fmt.Sprintf("https://localhost:%d", client.config.WalletPort),
+	})
+	responseBody := bytes.NewBuffer(postBody)
+	resp, err := c.Post(fmt.Sprintf("https://localhost:%d/log_in", client.config.WalletPort), "application/json", responseBody)
+	if err != nil {
+		return false, err
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return false, err
+	}
+	var state ChiaWalletResponse
+	err = json.Unmarshal(body, &state)
+	if err != nil {
+		return false, err
+	}
+	return state.Success, err
+}
