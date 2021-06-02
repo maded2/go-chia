@@ -23,7 +23,7 @@ func TestWalletClient_LogIn(t *testing.T) {
 		ChiaKeyFile:  "/home/eddie/.chia/mainnet/config/ssl/full_node/private_full_node.key",
 	}
 	fullNodeClient := NewWalletClient(config)
-	success, err := fullNodeClient.LogIn(123)
+	success, err := fullNodeClient.LogIn(123) // replace with real fingerprint to run this test
 	if err != nil {
 		t.Fatal(err)
 	}

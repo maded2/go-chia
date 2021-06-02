@@ -1,10 +1,7 @@
 package gochia
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 )
 
 type FullNodeClient struct {
@@ -21,26 +18,10 @@ func NewFullNodeClient(config *ChiaConfig) *FullNodeClient {
 }
 
 func (client *FullNodeClient) GetBlockchainState() (*ChiaBlockchainState, error) {
-	c, err := client.config.CreateClient()
+	var response FullNodeResponse
+	err := rpc(client.config, fmt.Sprintf("https://localhost:%d/get_blockchain_state", client.config.FullNodePort), map[string]interface{}{}, &response)
 	if err != nil {
 		return nil, err
 	}
-	postBody, _ := json.Marshal(map[string]string{})
-	responseBody := bytes.NewBuffer(postBody)
-	resp, err := c.Post(fmt.Sprintf("https://localhost:%d/get_blockchain_state", client.config.FullNodePort), "application/json", responseBody)
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-	//Read the response body
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-	var state FullNodeResponse
-	err = json.Unmarshal(body, &state)
-	if err != nil {
-		return nil, err
-	}
-	return &state.State, nil
+	return &response.State, nil
 }
