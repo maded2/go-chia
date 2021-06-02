@@ -1,4 +1,4 @@
-# go-chia
+# go-chia (WIP)
 Golang RPC API to the Chia Node
 
 All the Chia processes is only available to local connection with the default ports below.  Also in order access the RPC API it also need access to the chia full node certificate and private keys.
