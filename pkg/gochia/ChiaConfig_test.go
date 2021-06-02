@@ -80,7 +80,7 @@ func TestCreateClient3(t *testing.T) {
 		t.Fatal(err)
 	}
 	postBody, _ := json.Marshal(map[string]interface{}{
-		"wallet_id": "1",
+		"wallet_id": 1,
 	})
 	responseBody := bytes.NewBuffer(postBody)
 	resp, err := client.Post("https://localhost:9256/get_wallet_balance", "application/json", responseBody)
