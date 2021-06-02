@@ -6,8 +6,12 @@ import (
 )
 
 type ChiaConfig struct {
-	ChiaCertFile string // ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt
-	ChiaKeyFile  string // ~/.chia/mainnet/config/ssl/full_node/private_full_node.key
+	ChiaCertFile  string // ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt
+	ChiaKeyFile   string // ~/.chia/mainnet/config/ssl/full_node/private_full_node.key
+	FullNodePort  int
+	FarmerPort    int
+	HarvesterPort int
+	WalletPort    int
 }
 
 func (cc *ChiaConfig) CreateClient() (client *http.Client, err error) {
