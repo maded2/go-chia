@@ -67,3 +67,15 @@ type NextAddressResponse struct {
 	WalletId int    `json:"wallet_id"`
 	Address  string `json:"address"`
 }
+
+type PlotsResponse struct {
+	RpcResponse
+	FailedToOpenFilenames []string `json:"failed_to_open_filenames"`
+	NotFoundFilenames     []string `json:"not_found_filenames"`
+	Plots                 []Plot   `json:"plots"`
+}
+
+type PlotDirectoriesResponse struct {
+	RpcResponse
+	Directories []string `json:"directories"`
+}
