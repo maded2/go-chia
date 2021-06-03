@@ -10,9 +10,3 @@ type WalletBalance struct {
 	UnconfirmedWalletBalance float64 `json:"unconfirmed_wallet_balance"`
 	UnspentCoinCount         int     `json:"unspent_coin_count"`
 }
-
-type ChiaWalletResponse struct {
-	Balance WalletBalance `json:"wallet_balance"`
-	Error   string        `json:"error"`
-	Success bool          `json:"success"`
-}

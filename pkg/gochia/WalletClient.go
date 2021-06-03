@@ -18,7 +18,7 @@ func NewWalletClient(config *ChiaConfig) *WalletClient {
 }
 
 func (client *WalletClient) GetWalletBalance(walletId int) (*WalletBalance, error) {
-	var response ChiaWalletResponse
+	var response WalletBalanceResponse
 	err := rpc(client.config, fmt.Sprintf("https://localhost:%d/get_wallet_balance", client.config.WalletPort),
 		map[string]interface{}{
 			"wallet_id": walletId,
@@ -26,11 +26,11 @@ func (client *WalletClient) GetWalletBalance(walletId int) (*WalletBalance, erro
 	if err != nil {
 		return nil, err
 	}
-	return &response.Balance, nil
+	return &response.WalletBalance, nil
 }
 
 func (client *WalletClient) LogIn(fingerprint int) (bool, error) {
-	var response ChiaWalletResponse
+	var response WalletBalanceResponse
 	err := rpc(client.config, fmt.Sprintf("https://localhost:%d/log_in", client.config.WalletPort),
 		map[string]interface{}{
 			"fingerprint": fingerprint,
