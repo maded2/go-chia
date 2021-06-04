@@ -11,7 +11,7 @@ func TestFullNodeResponse(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	var resp FullNodeResponse
+	var resp BlockchainStateResponse
 	err = json.Unmarshal(buffer, &resp)
 	if err != nil {
 		t.Fatal(err)
