@@ -233,6 +233,11 @@ type BlockRecordResponse struct {
 	BlockRecord BlockRecord `json:"block_record"`
 }
 
+type CoinResponse struct {
+	RpcResponse
+	CoinRecords []CoinRecord `json:"coin_records"`
+}
+
 type CoinRecordResponse struct {
 	RpcResponse
 	CoinRecord CoinRecord `json:"coin_record"`
@@ -247,4 +252,9 @@ type AdditionsAndRemovalsResponse struct {
 type NetspaceResponse struct {
 	RpcResponse
 	Space uint64 `json:"space"`
+}
+
+type BlocksResponse struct {
+	RpcResponse
+	Blocks []Block `json:"blocks"`
 }
