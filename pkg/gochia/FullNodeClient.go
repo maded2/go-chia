@@ -17,11 +17,11 @@ func NewFullNodeClient(config *ChiaConfig) *FullNodeClient {
 	}
 }
 
-func (client *FullNodeClient) GetBlockchainState() (*ChiaBlockchainState, error) {
-	var response FullNodeResponse
+func (client *FullNodeClient) GetBlockchainState() (*BlockchainState, error) {
+	var response BlockchainStateResponse
 	err := rpc(client.config, fmt.Sprintf("https://localhost:%d/get_blockchain_state", client.config.FullNodePort), map[string]interface{}{}, &response)
 	if err != nil {
 		return nil, err
 	}
-	return &response.State, nil
+	return &response.BlockchainState, nil
 }

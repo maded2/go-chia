@@ -10,3 +10,15 @@ type Plot struct {
 	Size                   uint64 `json:"size"`
 	TimeModified           uint64 `json:"time_modified"`
 }
+
+type PlotsResponse struct {
+	RpcResponse
+	FailedToOpenFilenames []string `json:"failed_to_open_filenames"`
+	NotFoundFilenames     []string `json:"not_found_filenames"`
+	Plots                 []Plot   `json:"plots"`
+}
+
+type PlotDirectoriesResponse struct {
+	RpcResponse
+	Directories []string `json:"directories"`
+}
