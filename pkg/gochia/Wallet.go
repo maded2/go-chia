@@ -1,5 +1,7 @@
 package gochia
 
+type WalletType uint
+
 const (
 	STANDARD_WALLET  = 0
 	RATE_LIMITED     = 1

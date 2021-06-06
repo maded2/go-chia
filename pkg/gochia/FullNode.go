@@ -9,18 +9,17 @@ type Block struct {
 	InfusedChallengeChainIpProof Proof            `json:"infused_challenge_chain_ip_proof"`
 	RewardChainIpProof           Proof            `json:"reward_chain_ip_proof"`
 	RewardChainSpProof           Proof            `json:"reward_chain_sp_proof"`
-	//TransactionsGenerator        null             `json:"transactions_generator"`
 
 	// Only present on transaction block
 	FoliageTransactionBlock FoliageTransactionBlock `json:"foliage_transaction_block"`
 	TransactionsInfo        TransactionsInfo        `json:"transactions_info"`
 
 	// Only present if requested by client
-	HeaderHash string `json:"header_hash"`
+	HeaderHash bytes32 `json:"header_hash"`
 }
 
 type BlockHeader struct {
-	data struct {
+	Data struct {
 		AdditionsRoot           string `json:"additions_root"`
 		AggregatedSignature     string `json:"aggregated_signature"`
 		Cost                    string `json:"cost"`
@@ -30,48 +29,48 @@ type BlockHeader struct {
 		GeneratorHash           string `json:"generator_hash"`
 		Height                  uint64 `json:"height"`
 		PoolTarget              struct {
-			MaxHeight  uint64 `json:"max_height"`
-			PuzzleHash string `json:"puzzle_hash"`
+			MaxHeight  uint64  `json:"max_height"`
+			PuzzleHash bytes32 `json:"puzzle_hash"`
 		} `json:"pool_target"`
-		PrevHeaderHash       string  `json:"prev_header_hash"`
-		ProofOfSpaceHash     string  `json:"proof_of_space_hash"`
+		PrevHeaderHash       bytes32 `json:"prev_header_hash"`
+		ProofOfSpaceHash     bytes32 `json:"proof_of_space_hash"`
 		RemovalsRoot         string  `json:"removals_root"`
 		Timestamp            uint64  `json:"timestamp"`
 		TotalIters           uint64  `json:"total_iters"`
 		TotalTransactionFees float64 `json:"total_transaction_fees"`
 		Weight               string  `json:"weight"`
 	}
-	PlotSignature string
+	PlotSignature string `json:"plot_signature"`
 }
 
 type BlockRecord struct {
-	ChallengeBlockInfoHash             string    `json:"challenge_block_info_hash"`
+	ChallengeBlockInfoHash             bytes32   `json:"challenge_block_info_hash"`
 	ChallengeVdfOutput                 VdfOutput `json:"challenge_vdf_output"`
-	Deficit                            uint64    `json:"deficit"`
-	FarmerPuzzleHash                   string    `json:"farmer_puzzle_hash"`
-	Fees                               float64   `json:"fees"`
-	FinishedChallengeSlotHashes        []string  `json:"finished_challenge_slot_hashes"`
-	FinishedInfusedChallengeSlotHashes []string  `json:"finished_infused_challenge_slot_hashes"`
-	FinishedRewardSlotHashes           []string  `json:"finished_reward_slot_hashes"`
-	HeaderHash                         string    `json:"header_hash"`
-	Height                             uint64    `json:"height"`
+	Deficit                            uint8     `json:"deficit"`
+	FarmerPuzzleHash                   bytes32   `json:"farmer_puzzle_hash"`
+	Fees                               uint64    `json:"fees"`
+	FinishedChallengeSlotHashes        []bytes32 `json:"finished_challenge_slot_hashes"`
+	FinishedInfusedChallengeSlotHashes []bytes32 `json:"finished_infused_challenge_slot_hashes"`
+	FinishedRewardSlotHashes           []bytes32 `json:"finished_reward_slot_hashes"`
+	HeaderHash                         bytes32   `json:"header_hash"`
+	Height                             uint32    `json:"height"`
 	InfusedChallengeVdfOutput          VdfOutput `json:"infused_challenge_vdf_output"`
 	Overflow                           bool      `json:"overflow"`
-	PoolPuzzleHash                     string    `json:"pool_puzzle_hash"`
-	PrevTransactionBlockHash           string    `json:"prev_transaction_block_hash"`
+	PoolPuzzleHash                     bytes32   `json:"pool_puzzle_hash"`
+	PrevTransactionBlockHash           bytes32   `json:"prev_transaction_block_hash"`
 	PrevTransactionBlockHeight         uint64    `json:"prev_transaction_block_height"`
-	PrevHash                           string    `json:"prev_hash"`
+	PrevHash                           bytes32   `json:"prev_hash"`
 	RequiredIters                      uint64    `json:"required_iters"`
 	// Only transaction blocks have reward claim
 	RewardClaimsIncorporated   []RewardClaim `json:"reward_claims_incorporated"`
-	RewardInfusionNewChallenge string        `json:"reward_infusion_new_challenge"`
-	SignagePointIndex          uint64        `json:"signage_point_index"`
-	SubEpochSummaryIncluded    uint64        `json:"sub_epoch_summary_included"`
-	SubSlotIters               uint64        `json:"sub_slot_iters"`
+	RewardInfusionNewChallenge bytes32       `json:"reward_infusion_new_challenge"`
+	SignagePointIndex          uint8         `json:"signage_point_index"`
+	//SubEpochSummaryIncluded    uint64        `json:"sub_epoch_summary_included"`
+	SubSlotIters uint64 `json:"sub_slot_iters"`
 	// Only transaction blocks have timestamp
-	Timestamp  uint64 `json:"timestamp"`
-	TotalIters uint64 `json:"total_iters"`
-	Weight     uint64 `json:"weight"`
+	Timestamp  uint64  `json:"timestamp"`
+	TotalIters float64 `json:"total_iters"`
+	Weight     float64 `json:"weight"`
 }
 
 type BlockchainState struct {
@@ -80,24 +79,24 @@ type BlockchainState struct {
 	Space        float64     `json:"space"` // TODO need to use uint128
 	MempoolSize  uint64      `json:"mempool_size"`
 	SubSlotIters uint64      `json:"sub_slot_iters"`
-	sync         struct {
+	Sync         struct {
 		SyncMode           bool   `json:"sync_mode"`
 		SyncProgressHeight uint64 `json:"sync_progress_height"`
 		SyncTipHeight      uint64 `json:"sync_tip_height"`
 		Synced             bool   `json:"synced"`
-	}
+	} `json:"sync"`
 }
 
 type CoinRecord struct {
-	coin struct {
-		Amount         float64 `json:"amount"`
-		ParentCoinInfo string  `json:"parent_coin_info"`
-		PuzzleHash     string  `json:"puzzle_hash"`
-	}
+	Coin struct {
+		Amount         uint64  `json:"amount"`
+		ParentCoinInfo bytes32 `json:"parent_coin_info"`
+		PuzzleHash     bytes32 `json:"puzzle_hash"`
+	} `json:"coin"`
 	Coinbase            bool   `json:"coinbase"`
-	ConfirmedBlockIndex uint64 `json:"confirmed_block_index"`
+	ConfirmedBlockIndex uint32 `json:"confirmed_block_index"`
 	Spent               bool   `json:"spent"`
-	SpentBlockIndex     uint64 `json:"spent_block_index"`
+	SpentBlockIndex     uint32 `json:"spent_block_index"`
 	Timestamp           uint64 `json:"timestamp"`
 }
 
@@ -110,8 +109,8 @@ type FoliageBlock struct {
 			MaxHeight  uint64 `json:"max_height"`
 			PuzzleHash string `json:"puzzle_hash"`
 		} `json:"pool_target"`
-		UnfinishedRewardBlockHash string
-	}
+		UnfinishedRewardBlockHash string `json:"unfinished_reward_block_hash"`
+	} `json:"foliage_block_data"`
 	FoliageBlockDataSignature        string `json:"foliage_block_data_signature"`
 	FoliageTransactionBlockHash      string `json:"foliage_transaction_block_hash"`
 	FoliageTransactionBlockSignature string `json:"foliage_transaction_block_signature"`
@@ -120,17 +119,17 @@ type FoliageBlock struct {
 }
 
 type FoliageTransactionBlock struct {
-	AdditionsRoot            string `json:"additions_root"`
-	FilterHash               string `json:"filter_hash"`
-	PrevTransactionBlockHash string `json:"prev_transaction_block_hash"`
-	RemovalsRoot             string `json:"removals_root"`
-	Timestamp                uint64 `json:"timestamp"`
-	TransactionsInfoHash     string `json:"transactions_info_hash"`
+	AdditionsRoot            bytes32 `json:"additions_root"`
+	FilterHash               bytes32 `json:"filter_hash"`
+	PrevTransactionBlockHash bytes32 `json:"prev_transaction_block_hash"`
+	RemovalsRoot             bytes32 `json:"removals_root"`
+	Timestamp                uint64  `json:"timestamp"`
+	TransactionsInfoHash     bytes32 `json:"transactions_info_hash"`
 }
 
 type Proof struct {
 	Witness     string `json:"witness"`
-	WitnessType uint   `json:"witness_type"`
+	WitnessType uint8  `json:"witness_type"`
 }
 
 type ProofOfSpace struct {
@@ -190,11 +189,11 @@ type SubSlot struct {
 }
 
 type TransactionsInfo struct {
-	AggregatedSignature      string        `json:"aggregated_signature"`
-	Cost                     string        `json:"cost"`
-	Fees                     float64       `json:"fees"`
-	GeneratorRoot            string        `json:"generator_root"`
-	PreviousGeneratorsRoot   string        `json:"previous_generators_root"`
+	AggregatedSignature      bytes32       `json:"aggregated_signature"`
+	Cost                     uint64        `json:"cost"`
+	Fees                     uint64        `json:"fees"`
+	GeneratorRoot            bytes32       `json:"generator_root"`
+	PreviousGeneratorsRoot   bytes32       `json:"previous_generators_root"`
 	RewardClaimsIncorporated []RewardClaim `json:"reward_claims_incorporated"`
 }
 
