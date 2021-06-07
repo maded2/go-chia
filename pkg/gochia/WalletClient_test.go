@@ -6,8 +6,8 @@ import (
 
 func TestWalletClient_GetWalletBalance(t *testing.T) {
 	config := &ChiaConfig{
-		ChiaCertFile: "/home/eddie/.chia/mainnet/config/ssl/full_node/private_full_node.crt",
-		ChiaKeyFile:  "/home/eddie/.chia/mainnet/config/ssl/full_node/private_full_node.key",
+		ChiaCertFile: testCertFile,
+		ChiaKeyFile:  testKeyFile,
 	}
 	fullNodeClient := NewWalletClient(config)
 	balance, err := fullNodeClient.GetWalletBalance(1)
@@ -19,11 +19,11 @@ func TestWalletClient_GetWalletBalance(t *testing.T) {
 
 func TestWalletClient_LogIn(t *testing.T) {
 	config := &ChiaConfig{
-		ChiaCertFile: "/home/eddie/.chia/mainnet/config/ssl/full_node/private_full_node.crt",
-		ChiaKeyFile:  "/home/eddie/.chia/mainnet/config/ssl/full_node/private_full_node.key",
+		ChiaCertFile: testCertFile,
+		ChiaKeyFile:  testKeyFile,
 	}
 	fullNodeClient := NewWalletClient(config)
-	success, err := fullNodeClient.LogIn(123) // replace with real fingerprint to run this test
+	success, err := fullNodeClient.LogIn(testFingerprint) // replace with real fingerprint to run this test
 	if err != nil {
 		t.Fatal(err)
 	}
