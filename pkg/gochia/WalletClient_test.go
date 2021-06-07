@@ -17,6 +17,19 @@ func TestWalletClient_GetWalletBalance(t *testing.T) {
 	t.Logf("%+v", balance)
 }
 
+func TestWalletClient_GetFarmedAmount(t *testing.T) {
+	config := &ChiaConfig{
+		ChiaCertFile: testCertFile,
+		ChiaKeyFile:  testKeyFile,
+	}
+	fullNodeClient := NewWalletClient(config)
+	balance, err := fullNodeClient.GetFarmedAmount()
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Logf("%+v", balance)
+}
+
 func TestWalletClient_LogIn(t *testing.T) {
 	config := &ChiaConfig{
 		ChiaCertFile: testCertFile,

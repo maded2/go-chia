@@ -142,3 +142,12 @@ type NextAddressResponse struct {
 	WalletId int    `json:"wallet_id"`
 	Address  string `json:"address"`
 }
+
+type FarmedAmountResponse struct {
+	RpcResponse
+	FarmedAmount       float64 `json:"farmed_amount"`
+	PoolRewardAmount   float64 `json:"pool_reward_amount"`
+	FarmerRewardAmount float64 `json:"farmer_reward_amount"`
+	FeeAmount          float64 `json:"fee_amount"`
+	LastHeightFarmed   uint32  `json:"last_height_farmed"`
+}

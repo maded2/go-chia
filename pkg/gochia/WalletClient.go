@@ -29,6 +29,16 @@ func (client *WalletClient) GetWalletBalance(walletId int) (*WalletBalanceRespon
 	return &response, nil
 }
 
+func (client *WalletClient) GetFarmedAmount() (*FarmedAmountResponse, error) {
+	var response FarmedAmountResponse
+	err := rpc(client.config, fmt.Sprintf("https://localhost:%d/get_farmed_amount", client.config.WalletPort),
+		map[string]interface{}{}, &response)
+	if err != nil {
+		return nil, err
+	}
+	return &response, nil
+}
+
 func (client *WalletClient) LogIn(fingerprint int) (bool, error) {
 	var response WalletBalanceResponse
 	err := rpc(client.config, fmt.Sprintf("https://localhost:%d/log_in", client.config.WalletPort),

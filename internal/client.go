@@ -35,6 +35,12 @@ func (c *Client) Run() {
 	} else {
 		fmt.Printf("Can not get Chia Wallet balance: %s\n", err)
 	}
+	if farmed, err := walletClient.GetFarmedAmount(); err == nil && farmed.Success {
+		fmt.Printf("Farmed: %.10f XCH\n", farmed.FarmedAmount/10e11)
+		fmt.Printf("Fees: %.10f XCH\n", farmed.FeeAmount/10e11)
+	} else {
+		fmt.Printf("Can not get Chia Farmed: %s\n", err)
+	}
 }
 
 func getSyncState(state *gochia.BlockchainState) string {
