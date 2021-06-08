@@ -3,6 +3,7 @@ package internal
 import (
 	"fmt"
 	"gochia/pkg/gochia"
+	"time"
 )
 
 type Client struct {
@@ -21,6 +22,10 @@ func (c *Client) Run() {
 	if state, err := nodeClient.GetBlockchainState(); err == nil && state.Success {
 		fmt.Printf("Node State: %s\n", getSyncState(&state.BlockchainState))
 		fmt.Printf("Peak Height: %d\n", state.BlockchainState.Peak.Height)
+
+		t := time.Unix(int64(state.BlockchainState.Peak.Timestamp), 0)
+		fmt.Printf("Peak Height Timestamp: %s\n", t.Format("2006-01-02 15:04:05"))
+
 		fmt.Printf("Diffculty: %d\n", state.BlockchainState.Difficulty)
 		fmt.Printf("Estimated Network Space: %.3f EiB\n", state.BlockchainState.Space/eib)
 	} else {

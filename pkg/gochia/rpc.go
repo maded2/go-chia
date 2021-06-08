@@ -3,6 +3,7 @@ package gochia
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 )
 
@@ -20,6 +21,9 @@ func rpc(config *ChiaConfig, url string, parameters map[string]interface{}, resu
 	defer resp.Body.Close()
 	//Read the response body
 	body, err := ioutil.ReadAll(resp.Body)
+	if debugResponse {
+		fmt.Printf("%s\n", body)
+	}
 	if err != nil {
 		return err
 	}
