@@ -46,6 +46,15 @@ func (c *Client) Run() {
 	} else {
 		fmt.Printf("Can not get Chia Farmed: %s\n", err)
 	}
+	harvesterClient := gochia.NewHarvesterClient(&gochia.ChiaConfig{
+		ChiaCertFile: c.CertFile,
+		ChiaKeyFile:  c.KeyFile,
+	})
+	if plots, err := harvesterClient.GetPlots(); err == nil && plots.Success {
+		fmt.Printf("Farming: %d Plots\n", len(plots.Plots))
+	} else {
+		fmt.Printf("Can not get Plot count: %s\n", err)
+	}
 }
 
 func getSyncState(state *gochia.BlockchainState) string {
