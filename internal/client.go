@@ -51,7 +51,7 @@ func (c *Client) Run() {
 		ChiaKeyFile:  c.KeyFile,
 	})
 	if plots, err := harvesterClient.GetPlots(); err == nil && plots.Success {
-		fmt.Printf("Farming: %d Plots\n", len(plots.Plots))
+		fmt.Printf("Farming: %d Plots, Failed Plots: %d, NotFound Plots: %d\n", len(plots.Plots), len(plots.FailedToOpenFilenames), len(plots.NotFoundFilenames))
 	} else {
 		fmt.Printf("Can not get Plot count: %s\n", err)
 	}
