@@ -9,7 +9,7 @@ type HarvesterClient struct {
 }
 
 func NewHarvesterClient(config *ChiaConfig) *HarvesterClient {
-	if config.FullNodePort == 0 {
+	if config.HarvesterPort == 0 {
 		config.HarvesterPort = 8560
 	}
 	return &HarvesterClient{

@@ -9,7 +9,7 @@ type WalletClient struct {
 }
 
 func NewWalletClient(config *ChiaConfig) *WalletClient {
-	if config.FullNodePort == 0 {
+	if config.WalletPort == 0 {
 		config.WalletPort = 9256
 	}
 	return &WalletClient{

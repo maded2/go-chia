@@ -9,7 +9,7 @@ type FarmerClient struct {
 }
 
 func NewFarmerClient(config *ChiaConfig) *FarmerClient {
-	if config.FullNodePort == 0 {
+	if config.FarmerPort == 0 {
 		config.FarmerPort = 8559
 	}
 	return &FarmerClient{
