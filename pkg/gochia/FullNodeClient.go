@@ -84,11 +84,12 @@ func (client *FullNodeClient) GetBlockRecord(hash string) (*BlockRecordResponse,
 	return &response, nil
 }
 
-func (client *FullNodeClient) GetUnfinishedBlockHeaders(height uint64) (*UnfinishedBlockHeadersResponse, error) {
+func (client *FullNodeClient) GetUnfinishedBlockHeaders(height uint32) (*UnfinishedBlockHeadersResponse, error) {
 	var response UnfinishedBlockHeadersResponse
-	err := rpc(client.config, fmt.Sprintf("https://localhost:%d/get_unfinished_block_headers", client.config.FullNodePort), map[string]interface{}{
+	params := map[string]interface{}{
 		"height": height,
-	}, &response)
+	}
+	err := rpc(client.config, fmt.Sprintf("https://localhost:%d/get_unfinished_block_headers", client.config.FullNodePort), params, &response)
 	if err != nil {
 		return nil, err
 	}

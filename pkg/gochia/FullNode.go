@@ -199,7 +199,7 @@ type TransactionsInfo struct {
 
 type Vdf struct {
 	Challenge          string    `json:"challenge"`
-	NumberOfIterations string    `json:"number_of_iterations"`
+	NumberOfIterations uint64    `json:"number_of_iterations"`
 	Output             VdfOutput `json:"output"`
 }
 
@@ -214,7 +214,7 @@ type BlockchainStateResponse struct {
 
 type UnfinishedBlockHeadersResponse struct {
 	RpcResponse
-	Headers []BlockHeader `json:"headers"`
+	Headers []Block `json:"headers"`
 }
 
 type HeaderResponse struct {
